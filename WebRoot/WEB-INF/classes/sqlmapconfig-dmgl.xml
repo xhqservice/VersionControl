@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<dmgl>
+	<!--本配置文件配置格式（开始）-->
+	<select id="getDmComments">
+		<![CDATA[SELECT a.table_name, a.column_name, a.data_type,
+       DECODE (a.data_length,
+               '22', a.data_precision,
+               data_length
+              ) data_length, a.nullable, b.comments, tab.pk
+  FROM user_tab_cols a,
+       user_col_comments b,
+       (SELECT     table_name,
+                   LTRIM (MAX (SYS_CONNECT_BY_PATH (pk, '@@')), '@@') pk
+              FROM (SELECT a.*,
+                             RANK () OVER (ORDER BY table_name)
+                           + ROW_NUMBER () OVER (ORDER BY table_name) rn,
+                           ROW_NUMBER () OVER (PARTITION BY table_name ORDER BY table_name)
+                                                                           rm
+                      FROM (SELECT b.column_name pk, b.table_name
+                              FROM user_cons_columns b, user_constraints c
+                             WHERE b.constraint_name = c.constraint_name
+                               AND c.constraint_type = 'P') a)
+        START WITH rm = 1
+        CONNECT BY PRIOR rn = rn - 1
+          GROUP BY table_name) tab
+ WHERE a.table_name = b.table_name
+   AND a.column_name = b.column_name
+   AND a.table_name = tab.table_name
+   AND a.table_name = :tablename]]>
+	</select>
+	<!--本配置文件配置格式（结束）-->
+</dmgl>

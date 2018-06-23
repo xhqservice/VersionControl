@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtgl>
+	<!-- 用户管理====================================================== -->
+		<!-- 登录 -->
+	<select id="getUserBean">
+		<![CDATA[
+			select u.*
+			  from t_xt_user u
+			 where u.userid = :userid
+			   and u.password = :password
+			   and zt = '0'
+		]]>
+	</select>
+		<!-- 通过用户id获取用户,包含角色对象 -->
+	<select id="getUserContainRoleByUid">
+		<![CDATA[
+			select id,
+		       u.userid,
+		       username,
+		       password,
+		       qydm,
+		       xzqh,
+		       to_char(u.lrsj, 'yyyy-MM-dd HH:mm:ss') lrsj,
+		       to_char(u.zhxgsj, 'yyyy-MM-dd HH:mm:ss') zhxgsj,
+		       to_char(u.zxsj, 'yyyy-MM-dd HH:mm:ss') zxsj,
+		       lxr,
+		       lxrlxdh,
+		       u.zt zt,
+		       r.roleid roleid,
+		       r.rolename rolename
+		  from t_xt_user u, t_xt_role r, t_xt_userrole ur
+		 where u.id = ur.userid
+		   and r.roleid = ur.roleid
+		   and u.id = :uid
+		]]>
+	</select>
+	
+	<!-- 用户角色中间表========================================================= -->
+		<!-- 保存用户时候向中间表插入数据 -->
+	<update id="insert_t_xt_userrole">
+		<![CDATA[
+			insert into t_xt_userrole(userid,roleid) values(:userid,:roleid)
+		]]>
+	</update>
+		<!-- 通过user的id删除用户角色表中的数据 -->
+	<update id="delete_t_xt_userrole">
+		delete from t_xt_userrole where userid = :userid
+	</update>
+	
+	
+	<!-- 角色管理========================================================= -->
+		<!-- 获取所有的可用的角色列表 -->
+	<select id="getRolelist">
+		<![CDATA[
+			select r.* from T_XT_ROLE r where r.zt = '0'
+		]]>
+	</select>
+		<!-- 通过用户id获取角色对象,不包含权限信息 -->
+	<select id="getRoleByUserId">
+		<![CDATA[
+			select r.roleid, r.rolename, r.zt
+			  from t_xt_userrole ur, t_xt_role r
+			 where ur.roleid = r.roleid
+			   and ur.userid = :userid
+		]]>
+	</select>
+	
+	<!-- 权限管理========================================================= -->
+		<!-- 通过角色id获取角色对应的权限对象的集合 -->
+	<select id="getPermissesByRid">
+		<![CDATA[
+			select p.permissid, p.permissname, p.zt
+			  from t_xt_permiss p
+			 where p.permissid in
+			       (select rp.permissid from t_xt_rolepermiss rp where rp.roleid = :roleid)
+		]]>
+	</select>
+		<!-- 获得所有的权限集合 -->
+	<select id="getPermisses">
+		<![CDATA[
+			select p.permissid,p.permissname,p.zt
+			  from t_xt_permiss p
+			 where p.zt = '0'
+		]]>
+	</select>
+		<!-- 通过权限id获得其对应的所有的功能菜单的gncode集合 -->
+	<select id="getGnlbsByPermissid">
+		<![CDATA[
+			select g.gncode,g.gnname,g.zt
+			  from t_dm_gnlb g
+			 where g.gncode in
+			       (select pg.gncode from t_xt_permissgnlb pg where pg.permissid = :permissid)
+		]]>
+	</select>
+	
+	<!-- 角色权限中间表======================================================== -->
+		<!-- 添加角色之后向角色权限表中批量插入数据 -->
+	<update id="insert_t_xt_rolepermiss">
+		<![CDATA[
+			insert into t_xt_rolepermiss (roleid,permissid) values(?,?)
+		]]>
+	</update>
+		<!-- 更新角色时候，更改角色权限表之前清空之前的信息 -->
+	<update id = "delete_t_xt_rolepermiss_roleid">
+	  <![CDATA[
+	  	delete from t_xt_rolepermiss where roleid = :roleid	
+	  ]]>
+	</update>
+	
+	<!-- 权限功能中间表========================================================== -->
+		<!-- 根据权限id删除中间表中的数据 -->
+	<update id="delete_t_xt_permissgnlb_permissid">
+		<![CDATA[
+	  		delete from t_xt_permissgnlb where permissid = :permissid	
+	  	]]>
+	</update>
+		<!-- 批量向中间表中插入数据 -->
+	<update id="insert_t_xt_permissgnlb">
+		insert into t_xt_permissgnlb (permissid,gncode) values(?,?)
+	</update>
+	
+	<!-- 功能列表管理=========================================================== -->
+		<!-- 获取所有的功能列表，按照gncode进行排序 -->
+	<select id="getGnlbList">
+		<![CDATA[
+	  		select g.gncode, g.gnname, g.link, g.sort, g.zt
+			  from t_dm_gnlb g
+			 where g.zt = '0'
+			 order by g.sort
+	  	]]>
+	</select>
+		<!-- 通过角色id查询所有的功能列表的code的集合 -->
+	<select id="getGnlbListByRoleId">
+		<![CDATA[
+	  		select distinct g.gncode, g.gnname, g.link, g.sort, g.zt
+				  from t_xt_permissgnlb pg, t_dm_gnlb g
+				 where pg.gncode = g.gncode
+				   and pg.permissid in
+				       (select rp.permissid from t_xt_rolepermiss rp where rp.roleid = :roleid)
+				   and zt = '0'
+				 order by g.sort
+	  	]]>
+	</select>
+		<!-- 删除功能菜单对象 -->
+	<update id="deleteGnlbByGncode">
+		<![CDATA[
+			delete from T_DM_GNLB where gncode = :gncode
+		]]>
+	</update>
+</xtgl>

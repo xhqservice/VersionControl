@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+
+<struts>
+	<constant name="struts.multipart.maxSize" value="1104857600" />
+	<package name="StarAgent" extends="struts-default">
+		<interceptors>
+            <interceptor name="sessionInterceptor" 
+                class="com.jadlsoft.struts.interceptor.SessionInterceptor">
+            </interceptor>
+            
+            <interceptor name="commonSuccessInterceptor" 
+                class="com.jadlsoft.struts.interceptor.CommonSuccessInterceptor">
+            </interceptor>
+            
+            <!-- 拦截器栈 -->
+            <interceptor-stack name="fwzxdefault">
+                <interceptor-ref name="defaultStack" />
+                <interceptor-ref name="sessionInterceptor" />
+                <interceptor-ref name="commonSuccessInterceptor"/>
+            </interceptor-stack>
+        </interceptors>   
+        <default-interceptor-ref name="fwzxdefault"></default-interceptor-ref>
+
+		<global-results>
+            <result name="login" type="redirect">/login.jsp</result>
+            <result name="index" type="redirect">/app/applist.action</result>
+        </global-results>
+        
+		<action name="dologin*" method="{1}" class="loginAction">
+			<result type="chain">index</result>
+			<result name="failure" type="redirect">/login.jsp</result>
+			<result name="input">/login.jsp</result>
+		</action>
+		
+		<action name="commonlist" class="commonListAction">
+			<result name="Savelist">/save/savelist.jsp</result>
+			<result name="Continue">/save/saveselectlist.jsp</result>
+			<result name="Commonlist">/common/commonlist.jsp</result>
+			<result name="success">/common/commonlist.jsp</result>
+		</action>
+
+		<action name="commonsuccess" class="commonsuccessAction">
+			<result type="redirect">/save/commonsuccess.jsp</result>
+		</action>
+	</package>
+	
+	<package name="ajax" extends="json-default" namespace="/ajax">
+   		<action name="ajax_*" class="ajaxAction" method="{1}">
+		    <result type="json">
+		    	<param name="root">result</param>
+		   	</result>
+   		</action>
+   	</package>
+   	
+	<package name="search" extends="struts-default" namespace="/search">
+		<action name="search" class="com.jadlsoft.struts.action.search.SearchAction">
+			<result name="success">/search/searchresult.jsp</result>
+			<result name="successMethod">/search/searchresultmethod.jsp</result>
+			<result name="successMulti">/search/searchresultmulti.jsp</result>
+			<result name="successMultitwo">/search/searchresultmultitwo.jsp</result>
+		</action>
+	</package>
+	
+
+	<!-- 默认系统配置,由于类名是大写,jsp是小写,无法自动转换,*Action必须在application中通过注入转换成小写名称 -->
+	<package name="sys_default" extends="StarAgent" >
+		<action name="*/*_*" method="{3}" class="{2}Action">
+   			<result name="OK">/{1}/{2}{3}.jsp</result> 
+   			<result name="edit">/{1}/{2}edit.jsp</result>
+   			<result name="query">/{1}/{2}query.jsp</result>
+   			<result name="querynew">/{1}/{3}.jsp</result>
+   			<result name="listpage" >/{1}/{2}list.jsp</result> 
+   			<result name="list" type="redirect">/{1}/{2}list.action</result> 
+		    <result name="success">/save/commonsuccess.jsp</result> 
+		  
+		</action>
+	</package>
+	
+	
+	
+	<package name="logFile" extends="struts-default" namespace="/logFile">
+		<action name="search" class="com.core.jadlsoft.struts.action.search.SearchAction">
+			<result name="success">/search/searchresult.jsp</result>
+			<result name="successMethod">/search/searchresultmethod.jsp</result>
+			<result name="successMulti">/search/searchresultmulti.jsp</result>
+			<result name="successMultitwo">/search/searchresultmultitwo.jsp</result>
+		</action>
+	</package>
+	<!-- 系统管理 -->
+	<package name="xtgl" extends="json-default" namespace="/xtgl">
+		<!-- 系统action -->
+		<action name="system*" method="{1}" class="systemAction">
+			<result name="download">/xtgl/download.jsp</result>
+		</action>	
+		<!-- 用户action -->
+		<action name="user*" method="{1}" class="userAction">
+			<result name="edit">/xtgl/userEdit.jsp</result>	
+			<result name="view">/xtgl/userView.jsp</result>	
+			<result name="list" type="redirect">/xtgl/userlist.action</result>	
+		</action>	
+		<!-- 角色action -->
+		<action name="role*" method="{1}" class="roleAction">
+			<result name="view">/xtgl/roleView.jsp</result>	
+			<result name="edit">/xtgl/roleEdit.jsp</result>	
+			<result name="list" type="redirect">/xtgl/rolelist.action</result>	
+		</action>
+		<!-- 权限action -->
+		<action name="permiss*" method="{1}" class="permissAction">
+			<result name="view">/xtgl/permissView.jsp</result>	
+			<result name="edit">/xtgl/permissEdit.jsp</result>	
+			<result name="list" type="redirect">/xtgl/permisslist.action</result>	
+		</action>
+		<!-- 功能菜单action -->
+		<action name="gnlb*" method="{1}" class="gnlbAction">
+			<result name="view">/xtgl/gnlbView.jsp</result>	
+			<result name="edit">/xtgl/gnlbEdit.jsp</result>	
+			<result name="list" type="redirect">/xtgl/gnlblist.action</result>	
+		</action>
+	</package>
+	
+
+	
+	<package name="servicebus" extends="json-default" namespace="/servicebus">
+		<!-- 服务总线 -->
+		<action name="*" method="{1}" class="serviceBusAction">
+			
+		</action>	
+	</package>
+
+	
+</struts>

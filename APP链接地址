@@ -1,0 +1,13 @@
+进入商店二维码地址： 需要把{host}替换为线上地址
+	云平台：
+		二维码地址：{host}/VersionControlCenter/sti/MBCP
+		真实访问地址：{host}/VersionControlCenter/appUpload.do?para={qqlx=%27appCenter%27,ssxm=%2701%27}	
+	民爆项目：	
+		二维码地址：{host}/VersionControlCenter/sti/MB
+		真实访问地址：{host}/VersionControlCenter/appUpload.do?para={qqlx=%27appCenter%27,ssxm=%2702%27}
+	烟花项目：	
+		二维码地址：{host}/VersionControlCenter/sti/YH
+		真实访问地址：{host}/VersionControlCenter/appUpload.do?para={qqlx=%27appCenter%27,ssxm=%2703%27}
+	枪支项目：	
+		二维码地址：{host}/VersionControlCenter/sti/QZ
+		真实访问地址：{host}/VersionControlCenter/appUpload.do?para={qqlx=%27appCenter%27,ssxm=%2704%27}

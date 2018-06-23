@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configs>
+
+	<!-- 用户列表 -->
+	<forward request="/xtgl/userlist.action" requirecondition="1~=~1"
+		defaultcondition="1~=~1"
+		datasource="(select id,
+		               u.userid,
+		               username,
+		               qydm,
+		               xzqh,
+		               to_char(u.lrsj, 'yyyy-MM-dd HH:mm:ss') lrsj,
+		               to_char(u.zhxgsj, 'yyyy-MM-dd HH:mm:ss') zhxgsj,
+		               to_char(u.zxsj, 'yyyy-MM-dd HH:mm:ss') zxsj,
+		               lxr,
+		               lxrlxdh,
+		               u.zt zt,
+		               r.roleid roleid,
+		               r.rolename rolename
+		          from t_xt_user u, t_xt_role r, t_xt_userrole ur
+		         where u.zt = '0'
+		           and u.id = ur.userid
+		           and r.roleid = ur.roleid
+		         order by id)"
+		success="/xtgl/userList.jsp" title="" field="" />
+		
+		
+	<!-- 角色列表 -->
+	<forward request="/xtgl/rolelist.action" requirecondition="1~=~1"
+		defaultcondition="1~=~1"
+		datasource="(select roleid,rolename from t_xt_role r where zt = '0' order by roleid) r"
+		success="/xtgl/roleList.jsp" title="" field="" />
+		
+	<!-- 权限列表 -->
+	<forward request="/xtgl/permisslist.action" requirecondition="1~=~1"
+		defaultcondition="1~=~1"
+		datasource="(select permissid,permissname from t_xt_permiss p where zt = '0' order by permissid) p"
+		success="/xtgl/permissList.jsp" title="" field="" />
+		
+	<!-- 功能菜单列表 -->
+	<forward request="/xtgl/gnlblist.action" requirecondition="1~=~1"
+		defaultcondition="1~=~1"
+		datasource="(select g.gncode, g.gnname, g.link, g.sort from t_dm_gnlb g where zt = '0' order by gncode) p"
+		success="/xtgl/gnlbList.jsp" title="" field="" />
+</configs>
+

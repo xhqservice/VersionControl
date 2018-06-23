@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<Context path="/VersionControlCenter"   debug="5" reloadable="true" crossContext="true">
+
+<!--  <Resource name="jdbc_mb" auth="Container" type="javax.sql.DataSource" 
+  driverClassName="oracle.jdbc.driver.OracleDriver" 
+  url="jdbc:oracle:thin:@10.25.74.195:1521:orcl" 
+  username="US_SERVICES_VERSIONCONTROL" password="gaxt2008" maxActive="20" maxIdle="10" maxWait="-1"/> -->
+  
+   <!-- <Resource name="jdbc_mb" auth="Container" type="javax.sql.DataSource" 
+	  driverClassName="oracle.jdbc.driver.OracleDriver" 
+	  url="jdbc:oracle:thin:@192.168.20.118:1521:orcl" 
+	  username="US_SERVICES_VERSIONCONTROL" password="gaxt2008" maxActive="20" maxIdle="10" maxWait="-1"/> -->
+	  
+   <Resource name="jdbc_mb" auth="Container" type="javax.sql.DataSource" 
+	  driverClassName="oracle.jdbc.driver.OracleDriver" 
+	  url="jdbc:oracle:thin:@192.168.20.102:1521:orcl102" 
+	  username="US_SERVICES_VERSIONCONTROL" password="gaxt2008" maxActive="20" maxIdle="10" maxWait="-1"/>
+  
+  </Context>
+
+<!-- 测试环境
+<Context path="/StarAgent"   debug="5" reloadable="true" crossContext="true">
+  <Resource name="jdbc_fwzx" auth="Container" type="javax.sql.DataSource" 
+  driverClassName="oracle.jdbc.driver.OracleDriver" 
+  url="jdbc:oracle:thin:@192.168.20.102:1521:orcl102" 
+  username="us_mbadmin_fwzx" password="gaxt2008" maxActive="20" maxIdle="10" maxWait="-1"/>
+  </Context> -->

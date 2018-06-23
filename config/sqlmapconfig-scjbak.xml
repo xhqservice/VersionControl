@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scjbak>
+	<!-- 根据flashID和单位代码获取最新备份信息 -->
+	<select id="getScjLastBakByFlashidAndDwdm">
+		<![CDATA[
+			select *
+			  from (select a.*,
+			               b.id bakid,
+			               b.filesize,
+			               b.filename,
+			               b.sha1,
+			               b.bfsj,
+			               b.xgsj xgsj_bak,
+			               b.cxsj cxsj_bak
+			          from t_scjbak_jbxx a, t_scjbak_bak b
+			         where a.id = b.scjid
+			           and a.zt = '0'
+			           and b.zt = '0'
+			           and a.flashid = :flashid
+			           and a.dwdm = :dwdm
+			         order by b.xgsj desc)
+			 where rownum = 1
+		]]>
+	</select>
+	
+	<!-- 更新手持机备份信息的更新时间 -->
+	<update id="updateScjBakGxsj">
+		<![CDATA[
+			update t_scjbak_bak a set a.xgsj = :xgsj where a.id = :id and a.zt = '0'
+		]]>
+	</update>
+	
+	<!-- 删除备份数据 -->
+	<update id="delscjbakByid">
+		<![CDATA[
+			update t_scjbak_bak a set a.cxsj = :cxsj,a.zt = :zt where a.id = :id
+		]]>
+	</update>
+	
+	
+	<!-- 获取基本信息包含当前的备份次数 -->
+	<select id="getScjWithBakxx">
+		<![CDATA[
+			select a.*,
+			       b.id bakid,
+			       b.filesize,
+			       b.filename,
+			       b.sha1,
+			       b.bfsj,
+			       b.xgsj xgsj_bak
+			  from t_scjbak_jbxx a, t_scjbak_bak b
+			 where a.zt = '0'
+			   and b.zt = '0'
+			   and a.id = b.scjid
+			   and a.id = :id
+		]]>
+	</select>
+	
+	<!-- 获取所有可用备份列表-->
+	<select id="getHyList">
+		<![CDATA[
+			select a.dh,
+			       b.filesize,
+			       b.filename,
+			       b.sha1,
+			       b.xgsj bfsj
+			  from t_scjbak_jbxx a, t_scjbak_bak b
+			 where a.id = b.scjid
+			   and a.zt = :zt
+			   and b.zt = :zt
+			   and a.dwdm = :dwdm
+			   and a.dh is not null
+			   and a.sblx = :sblx
+         	   and a.yylx = :yylx
+         	   order by b.bfsj desc
+		]]>
+	</select>
+	
+	<!-- 获取FTP信息-->
+	<select id="getFtpMap">
+		<![CDATA[
+			select * from t_scjbak_ftp
+		]]>
+	</select>
+	
+	<!-- 获取单位的可备份次数-->
+	<select id="getBfcsByDwdm">
+		<![CDATA[
+			select * from t_scjbak_dwbfcs where dwdm = :dwdm
+		]]>
+	</select>
+	
+	<!-- 根据dwdm、flashid校验代号 -->
+	<select id="getDhByDwdmAndFlashid">
+		SELECT a.dh, b.xgsj
+		  FROM t_scjbak_jbxx a, t_scjbak_bak b
+		 WHERE     a.id = b.scjid(+)
+		       AND a.zt = '0'
+		       AND a.flashid = :flashid
+		       AND a.dwdm = :dwdm
+		       order by b.xgsj desc
+	</select>
+	
+	<!-- 验证同一单位代号唯一 -->
+	<select id="checkOnly">
+		select * from t_scjbak_jbxx where dwdm=:dwdm and dh=:dh
+	</select>
+	<!-- 根据dwdm、flashid校验代号 -->
+	<select id="checkDh">
+		SELECT a.dh, b.xgsj
+		  FROM t_scjbak_jbxx a, t_scjbak_bak b
+		 WHERE     a.id = b.scjid(+)
+		       AND a.zt = '0'
+		       AND a.flashid = :flashid
+		       AND a.dwdm = :dwdm
+		       order by b.xgsj desc
+	</select>
+	
+	<!-- 验证同一单位代号唯一 -->
+	<select id="checkOnly">
+		select * from t_scjbak_jbxx where dwdm=:dwdm and dh=:dh
+	</select>
+	<!-- 根据dwdm、flashid校验代号 -->
+	<select id="checkDh">
+		SELECT a.dh, b.xgsj
+		  FROM t_scjbak_jbxx a, t_scjbak_bak b
+		 WHERE     a.id = b.scjid(+)
+		       AND a.zt = '0'
+		       AND a.flashid = :flashid
+		       AND a.dwdm = :dwdm
+		       order by b.xgsj desc
+	</select>
+</scjbak>

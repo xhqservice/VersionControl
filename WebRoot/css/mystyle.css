@@ -1,0 +1,104 @@
+a {
+	text-decoration: none;
+	color: #0000CC;
+}
+
+.log_div {
+	margin: 0 auto;
+	margin-top: 5px;
+	padding: 10px;
+	position: relative;
+	width: 860px;
+	overflow-x: auto;
+	border-radius: 5px;
+	background-color: #F8F8F8;
+}
+
+.box-shadow {
+	filter: progid:DXImageTransform.Microsoft.Shadow(color='#969696',
+		Direction=120, Strength=10 ); /*for ie6,7,8*/
+	-moz-box-shadow: 5px 5px 15px #969696; /*firefox*/
+	-webkit-box-shadow: 5px 5px 15px #969696; /*webkit*/
+	box-shadow: 5px 5px 15px #969696; /*opera或ie9*/
+}
+
+.closeLog {
+	position: absolute;
+	top: 0px;
+	right: 1px;
+	text-align: center;
+	line-height: 30px;
+	background-color: #2FA2F4;
+	color: #F8F8F8;
+	width: 40px;
+	height: 30px;
+}
+
+.closeLog a:HOVER {
+	color: red;
+}
+
+.log_div table {
+	margin: 0 auto;
+	margin-top: 20px;
+	text-align: center;
+	font-size: 18px;
+}
+
+.log_div_td1 {
+	margin: 0 auto;
+	width: 50%;
+}
+
+.log_div_td2 {
+	margin: 0 auto;
+	width: 20%;
+}
+
+.log_div_td3 {
+	margin: 0 auto;
+	width: 15%;
+	color: #4285F4;
+}
+
+
+.select_main {
+	width: 200px;
+	background: #F0F0F0;
+	margin: 0 auto;
+	
+}
+.hea {
+	margin-top: 20px;
+	padding-bottom: 10px;
+}
+.select_fwq_item {
+	
+	margin:0 auto;
+	height:25px;
+	line-height: 25px;
+}
+.select_fwq_item a {
+	size: 20px;
+}
+.monibutton {
+	size: 16px;
+	color: #3989EA;
+	margin-left: 20px;
+}
+
+.showBackup_main {
+	background: #F0F0F0;
+	width: 800px;
+	margin: 0 auto;
+	padding-left: 20px;
+	padding-right: 20px;
+	text-align: center;
+}
+.showBackup_oneDiv {
+	width: 240px;
+	margin: 0 auto;
+	margin-top: 20px;
+	margin-left: 10px;
+	float: left;
+}

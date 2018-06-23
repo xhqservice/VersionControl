@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="GB2312"?>
+<jadlsoft-jaly>
+	<!--
+				url: 链接方式
+			 gncode: 对应功能代码
+		 managetype: 数据管理方式（0: 无限制, 1: 本地管理, 2: 属地管理, 3: 市局、省厅所有的权限、4: 省厅独有权限）
+		manageparam: 管理参数，列表查询使用queryparamter[字段名称]，其中queryparamter可以省略 
+		  paramname: 功能参数名称
+		 paramvalue: 功能参数值
+	-->
+	
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 登录 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<item url="/dologinlogin.action" gncode="" managetype="0" manageparam="" />
+	
+
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ app管理-基本信息维护 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<item url="/app/app_edit.action" gncode="" managetype="0" manageparam="" />
+	<item url="/app/app_save.action" gncode="" managetype="0" manageparam="" />
+	<item url="/app/app_update.action" gncode="" managetype="0" manageparam="" />
+	<item url="/app/app_get.action" gncode="" managetype="0" manageparam="" />
+	<item url="/app/app_remove.action" gncode="" managetype="0" manageparam="" />
+	<item url="/app/app_version.action" gncode="" managetype="0" manageparam="" />
+	<item url="/app/app_updaterule.action" gncode="" managetype="0" manageparam="" />
+	<item url="/app/app_checkAppid.action" gncode="" managetype="0" manageparam="" />
+	<item url="/app/app_uploadIcon.action" gncode="" managetype="0" manageparam="" />
+	
+	
+	
+	<item url="/app/appversion_edit.action" gncode="" managetype="0" manageparam="" />
+	<item url="/app/appversion_edit_ios.action" gncode="" managetype="0" manageparam="" />
+	<item url="/app/appversion_save.action" gncode="" managetype="0" manageparam="" />
+	<item url="/app/appversion_save_ios.action" gncode="" managetype="0" manageparam="" />
+	<item url="/app/appversion_update.action" gncode="" managetype="0" manageparam="" />
+	<item url="/app/appversion_update_ios.action" gncode="" managetype="0" manageparam="" />
+	<item url="/app/appversion_get.action" gncode="" managetype="0" manageparam="" />
+	<item url="/app/appversion_remove.action" gncode="" managetype="0" manageparam="" />
+	<item url="/app/appversion_checkAppVersion.action" gncode="" managetype="0" manageparam="" />
+	<item url="/app/appversion_setdefault.action" gncode="" managetype="0" manageparam="" />
+	<item url="/app/appversion_detectVersion.action" gncode="" managetype="0" manageparam="" />
+	
+	
+	<item url="/app/autotask_edit.action" gncode="" managetype="0" manageparam="" />
+	<item url="/app/autotask_save.action" gncode="" managetype="0" manageparam="" />
+	<item url="/app/autotask_update.action" gncode="" managetype="0" manageparam="" />
+	<item url="/app/autotask_get.action" gncode="" managetype="0" manageparam="" />
+	<item url="/app/autotask_remove.action" gncode="" managetype="0" manageparam="" />
+	
+	
+	<item url="/app/appupdaterule_edit.action" gncode="" managetype="0" manageparam="" />
+	<item url="/app/appupdaterule_save.action" gncode="" managetype="0" manageparam="" />
+	<item url="/app/appupdaterule_update.action" gncode="" managetype="0" manageparam="" />
+	<item url="/app/appupdaterule_get.action" gncode="" managetype="0" manageparam="" />
+	<item url="/app/appupdaterule_remove.action" gncode="" managetype="0" manageparam="" />
+	
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 二维码管理 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	
+	<item url="/qrgl/dmgl_toDmglMain.action" gncode="" managetype="0" manageparam="" />
+	<item url="/qrgl/dmgl_edit.action" gncode="" managetype="0" manageparam="" />
+	<item url="/qrgl/dmgl_searchDic.action" gncode="" managetype="0" manageparam="" />
+	<item url="/qrgl/dmgl_update.action" gncode="" managetype="0" manageparam="" />
+	<item url="/qrgl/dmgl_remove.action" gncode="" managetype="0" manageparam="" />
+	
+	<item url="/qrgl/qrCode_createQRCode.action" gncode="" managetype="0" manageparam="" />
+	<item url="/qrgl/qrCode_fillQRCode.action" gncode="" managetype="0" manageparam="" />
+	<item url="/qrgl/qrCode_writeImgTofile.action" gncode="" managetype="0" manageparam="" />
+
+</jadlsoft-jaly>

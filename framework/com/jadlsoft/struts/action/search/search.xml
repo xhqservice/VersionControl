@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<items>
+	<!--本配置文件配置格式（开始）-->
+	<!-- 汉字说明 -->
+	<!--
+		<节点名称>页面中调用的节点名称
+		<table>表名</table>=========================表名或用（）括起来的SQL语句
+		<filter>过滤条件</filter>====================过滤条件，有特殊字符时加<![CDATA[]]>
+		<resultcol>列1,列2...</resultcol>===========查询结果列
+		<orderby>字段名</orderby>====================排序字段名
+		<title>表头1,表头2...</title>================结果列表头
+		<searchcol>条件1,条件2...</searchcol>========查询条件
+		<searchcond>操作符1,操作符2...</searchcond>===对应查询条件的操作符
+		<searchtitle>描述1,描述2...</searchtitle>====查询条件文字描述
+		<pagesize>页数</pagesize>===================默认显示页数
+		<colwidth>宽度1,宽度2...</colwidth>==========结果列宽度百分比
+		</节点名称>-->
+	<!--本配置文件配置格式（结束）-->
+	
+	<xzqh>
+		<table>
+		(
+		select dm xzqh,
+		decode(mc,'部级','全国',mc)  xzqhmc,
+		decode(
+		dm,'000000','',
+		decode(substr(dm,3,4),'0000',substr(dm,1,2),
+		   decode(substr(dm,5,2),'00',substr(dm,1,4),dm))
+		   ) dm_short
+		from T_DM_XZQH
+		)
+		</table>
+		<resultcol>xzqh,xzqhmc,dm_short</resultcol>
+		<orderby>xzqh</orderby>
+		<title>行政区划代码,行政区划名称</title>
+		<searchcol>xzqh,xzqhmc</searchcol>
+		<searchcond>like,like</searchcond>
+		<searchtitle>行政区划代码,行政区划名称</searchtitle>
+		<pagesize>10</pagesize>
+		<colwidth>40%,60%</colwidth>
+	</xzqh>	
+	
+	<!-- 应用列表 -->
+	<applist>
+		<table>
+			(select id, appid, appname, ssxm,mc ssxm_dicvalue,'' version from t_app_jbxx a,t_dm_ssxm b  where a.zt = '0' and a.ssxm = b.dm order by cjsj desc)
+		</table>
+		<resultcol>appid,appname,ssxm_dicvalue,version</resultcol>
+		<orderby>appid</orderby>
+		<title>应用ID,应用名称,所在项目</title>
+		<searchcol>appid,yyname</searchcol>
+		<searchcond>like,like</searchcond>
+		<searchtitle>应用ID,应用名称</searchtitle>
+		<pagesize>10</pagesize>
+		<colwidth>15%,20%,20%</colwidth>
+	</applist>
+	
+	<!-- 版本列表 -->
+	<appversion>
+		<table>
+			(select a.appid,b.appname,a.version,decode(a.isdefault,'0','默认版本','') isdefault,to_char(a.cjsj,'yyyy-MM-dd hh24:mi:ss') cjsj from t_app_version a,t_app_jbxx b where a.appid = b.appid and  b.zt ='0' and a.zt = '0' and a.type = '0' order by cjsj desc )
+		</table>
+		<resultcol>appname,version,cjsj,isdefault,appid</resultcol>
+		<orderby></orderby>
+		<title>APP,版本号,上传时间,是否默认</title>
+		<searchcol>version</searchcol>
+		<searchcond>like</searchcond>
+		<searchtitle>版本号</searchtitle>
+		<pagesize>10</pagesize>
+		<colwidth>20%,15%,15%,15%</colwidth>
+	</appversion>
+	
+	<!-- 数据接口 -->
+	<sjjk>
+		<table>
+			(select id sjjkid,jkname sjjkname from t_fwgl_sjjk t where zt = '0')
+		</table>
+		<resultcol>sjjkid,sjjkname</resultcol>
+		<orderby>sjjkid</orderby>
+		<title>数据接口ID,数据接口名称,WAR包名称</title>
+		<searchcol>sjjkname</searchcol>
+		<searchcond>like</searchcond>
+		<searchtitle>数据接口名称</searchtitle>
+		<pagesize>10</pagesize>
+		<colwidth>30%,70%</colwidth>
+	</sjjk>
+	
+	<!-- 服务列表 -->
+	<fwlist>
+		<table>
+			(select fwid,fwname,fwfl,b.mc fwflmc from t_fwgl_fw a,t_dm_fwfl b  where zt ='0' and a.fwfl = b.dm)
+		</table>
+		<resultcol>fwid,fwname,fwflmc</resultcol>
+		<orderby>fwid</orderby>
+		<title>服务ID,服务名称,服务分类</title>
+		<searchcol>fwid,fwname</searchcol>
+		<searchcond>like,like</searchcond>
+		<searchtitle>服务ID,服务名称</searchtitle>
+		<pagesize>10</pagesize>
+		<colwidth>30%,40%,30%</colwidth>
+	</fwlist>
+	
+	<!-- 数据接口列表 -->
+	<sjjklist>
+		<table>
+			(select jkid,jkname,sjlb,b.mc sjlbmc from t_sjjk_jbxx a,t_dm_sjlb b  where zt ='0' and a.sjlb = b.dm)
+		</table>
+		<resultcol>jkid,jkname,sjlbmc</resultcol>
+		<orderby>jkid</orderby>
+		<title>接口ID,接口名称,数据类别</title>
+		<searchcol>jkid,jkname</searchcol>
+		<searchcond>like,like</searchcond>
+		<searchtitle>接口ID,接口名称</searchtitle>
+		<pagesize>10</pagesize>
+		<colwidth>30%,40%,30%</colwidth>
+	</sjjklist>
+	
+	<!-- 所有服务列表（内部+外部） -->
+	<allfwlist>
+		<table>
+			(select a.*, b.mc fwflmc
+					  from (select a.id, a.fwid, a.fwfl, a.lylx, a.fwname
+					          from t_fwgl_fw a
+					         where a.zt = '0'
+					        union all
+					        select a.id, a.fwid, a.fwfl, a.lylx, a.fwname
+					          from t_fwgl_wbfw a
+					         where a.zt = '0'
+					           and a.fwzt = '01') a,
+					       t_dm_fwfl b
+					 where a.fwfl = b.dm
+					 order by lylx, fwfl)
+		</table>
+		<resultcol>fwid,fwname,fwflmc</resultcol>
+		<orderby>fwid</orderby>
+		<title>服务ID,服务名称,服务分类</title>
+		<searchcol>fwid,fwname</searchcol>
+		<searchcond>like,like</searchcond>
+		<searchtitle>服务ID,服务名称</searchtitle>
+		<pagesize>10</pagesize>
+		<colwidth>30%,40%,30%</colwidth>
+	</allfwlist>
+</items>

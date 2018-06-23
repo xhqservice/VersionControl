@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configs>
+
+	<successforward id="sbsj/dr">
+		<defaulturl>
+			<![CDATA[../sbsj/drlist.action]]>
+		</defaulturl>
+		<linkurl linkname="返回公升级专用设备注册信息列表" target="_self">
+			<![CDATA[../sbsj/drlist.action]]>
+		</linkurl>
+		<linkurl linkname="添加升级专用设备注册" target="_self">
+			<![CDATA[../sbsj/dredit.action]]>
+		</linkurl>
+	</successforward>	
+	<successforward id="sbsj/drupdate">
+		<gncode>020106</gncode>
+		<description>
+			<![CDATA[添加升级专用设备注册成功]]>
+		</description>
+		<linkurl linkname="返回升级专用设备注册信息列表" target="_self">
+			<![CDATA[../sbsj/drlist.action]]>
+		</linkurl>
+	</successforward>
+	<successforward id="sbsj/drsave">
+		<gncode>020107</gncode>
+		<description>
+			<![CDATA[注册升级专用设备注册成功]]>
+		</description>
+		<linkurl linkname="返回升级专用设备注册信息列表" target="_self">
+			<![CDATA[../sbsj/drlist.action]]>
+		</linkurl>
+	</successforward>
+	<successforward id="sbsj/drlogout">
+		<gncode>020103</gncode>
+		<description>
+			<![CDATA[注销升级专用设备注册成功]]> 
+		</description>
+		<linkurl linkname="返回升级专用设备注册信息列表" target="_self">
+			<![CDATA[../sbsj/drlist.action]]>
+		</linkurl>
+	</successforward>
+	<successforward id="sbsj/dssave">
+		<gncode>020103</gncode>
+		<description>
+			<![CDATA[升级专用设备设置成功]]> 
+		</description>
+		<linkurl linkname="返回升级专用设备设置信息列表" target="_self">
+			<![CDATA[../sbsj/dslist.action]]>
+		</linkurl>
+	</successforward>
+	
+	<successforward id="scj/dcsave">
+		<gncode>020103</gncode>
+		<description>
+			<![CDATA[手持设备设置成功]]> 
+		</description>
+		<linkurl linkname="返回手持设备设置信息列表" target="_self">
+			<![CDATA[../scj/dclist.action]]>
+		</linkurl>
+	</successforward>
+
+	<successforward id="xtgl/user">
+		<defaulturl>
+			<![CDATA[../xtgl/userlist.action]]>
+		</defaulturl>
+		<linkurl linkname="返回系统用户信息列表" target="_self">
+			<![CDATA[../xtgl/userlist.action]]>
+		</linkurl>
+		<linkurl linkname="添加系统用户" target="_self">
+			<![CDATA[../xtgl/useredit.action]]>
+		</linkurl>
+	</successforward>
+	<successforward id="xtgl/user_save">
+		<gncode>050101</gncode>
+		<description>
+			<![CDATA[添加系统用户[$username]成功]]>
+		</description>
+		<linkurl linkname="修改该系统用户信息" target="_self">
+			<![CDATA[../xtgl/user!get&userid=[$userid]]]>
+		</linkurl>
+		<linkurl linkname="查看该系统用户详细信息" target="_blank">
+			<![CDATA[../xtgl/user!get&userid=[$userid]&view=true]]>
+		</linkurl>
+	</successforward>
+	<successforward id="xtgl/user_update">
+		<gncode>050102</gncode>
+		<description>
+			<![CDATA[修改系统用户[$username]成功]]>
+		</description>
+		<linkurl linkname="查看该系统用户详细信息" target="_blank">
+			<![CDATA[../xtgl/user!get&userid=[$userid]&view=true]]>
+		</linkurl>
+	</successforward>
+	<successforward id="xtgl/user_delete">
+		<gncode>050103</gncode>
+		<description>
+			<![CDATA[删除系统用户成功]]>
+		</description>
+	</successforward>
+
+</configs>

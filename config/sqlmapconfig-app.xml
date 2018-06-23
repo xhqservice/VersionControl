@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<app>
+	<!-- 校验APP版本是否存在 -->
+	<select id="checkAppVersion">
+		<![CDATA[
+			select * from t_app_version t  where zt = :zt and id != :id and version = :version and appid = :appid and type = :type
+		]]>
+	</select>
+	
+	
+	<!-- 取消默认版本-->
+	<update id="removeDefaultVersion">
+		<![CDATA[
+			update t_app_version set isdefault = :nodefault where zt = :zt and appid = :appid and type = :type
+		]]>
+	</update>
+	
+	<!-- 获取所有未执行的定时任务 -->
+	<select id="getAutoTaskList">
+		<![CDATA[
+			select id, appid, appname, version, todotime, cjsj, zhxgsj, zxsj, zt from t_app_autotask where zt = :zt and todozt= :todozt and todotime <= sysdate
+		]]>
+	</select>
+	
+	
+	<!-- 设置默认版本（定时任务）-->
+	<update id="upgradeVersion">
+		<![CDATA[
+			update t_app_version set isdefault = :default where zt = :zt and appid = :appid and type = :type and version = :version
+		]]>
+	</update>
+	
+	<!-- 根据所属项目和APP类型获取APP下载列表 -->
+	<select id="getAppListBySsxmAndApptype">
+		<![CDATA[
+			select a.appid,
+			       a.appname,
+			       a.ssxm,
+			       a.appdesc,
+			       a.iconsrc,
+			       a.sort,
+			       b.apk,
+			       b.apksrc,
+			       b.version,
+			       b.versiondesc,
+			       b.type,
+			       b.apksize
+			  from t_app_jbxx a, t_app_version b
+			 where a.appid = b.appid
+			   and a.zt = :zt
+			   and b.isdefault = :isdefault
+			   and b.zt = :zt
+			   and b.type = :apptype
+			   and a.ssxm = :ssxm
+			   order by a.sort
+		]]>
+	</select>
+	
+	<!--根据APPID获取定制下载版本 -->
+	<select id="getRuleVersion">
+		<![CDATA[
+		select  d.*
+		  from t_app_updaterule a,
+		       (select b.appid,
+		               b.appname,
+		               b.ssxm,
+		               b.appdesc,
+		               c.apk,
+		               c.apksrc,
+		               c.version,
+		               c.versiondesc,
+		               c.versioncode,
+		               c.type
+		          from t_app_jbxx b, t_app_version c
+		         where b.appid = c.appid
+		           and b.zt = '0'
+		           and c.zt = '0'
+		           and c.type = '0') d
+		 where a.appid = d.appid
+		   and a.version = d.version
+		   and a.zt = '0'
+		   and (
+                   (a.kssj is null and a.jssj is null) or 
+                   (a.jssj is not null and a.kssj is not null and a.kssj <= sysdate and a.jssj >=sysdate ) or 
+                   (a.kssj is null and a.jssj is not null and a.jssj >= sysdate ) or
+                   (a.jssj is null and a.kssj is not null and a.kssj <= sysdate )
+                  
+                  )
+		       and :whereCond and a.appid = :appid
+		 order by a.targetlx
+		]]>
+	</select>
+	
+	<!-- 根据APPID获取默认下载版本 -->
+	<select id="getDefaultVersionIno">
+		<![CDATA[
+			select a.appid,
+			       a.appname,
+			       a.ssxm,
+			       a.appdesc,
+			       b.apk,
+			       b.apksrc,
+			       b.version,
+			       b.versiondesc,
+			       b.versioncode,
+			       b.type
+			  from t_app_jbxx a, t_app_version b
+			 where a.appid = b.appid
+			   and a.zt = :zt
+			   and b.isdefault = :isdefault
+			   and b.zt = :zt
+			   and b.type = :apptype
+			   and a.appid = :appid
+		]]>
+	</select>
+	
+</app>

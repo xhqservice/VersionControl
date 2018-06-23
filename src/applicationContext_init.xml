@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd   
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd   
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd   
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd"
+	default-autowire="byName">
+
+	<!-- 服务器缓存 -->
+	<bean id="dicMapUtils" class="com.jadlsoft.dbutils.DicMapUtils"
+		init-method="setCache">
+		<property name="tableList">
+			<list>
+				<!-- tablename//sql//keycol//orderby -->
+				<!-- 所属平台字典 -->
+				<value>t_dm_ssxm//t_dm_ssxm//dm//dm</value>
+				<!-- 目标类型字典 -->
+				<value>t_dm_targetlx//t_dm_targetlx//dm//dm</value>
+				<!-- 执行状态字典 -->
+				<value>t_dm_todozt//t_dm_todozt//dm//dm</value>
+				<!-- 行政区划字典 -->
+				<value>t_dm_xzqh//t_dm_xzqh//dm//dm</value>
+				
+			</list>
+		</property>
+		<property name="keyColumn" value="code" />
+		<property name="dicConfigFile" value="/dicconfig.xml" />
+	</bean>
+	
+	
+	
+	<!--  -->
+	<bean id="commonListAction" class="com.jadlsoft.struts.action.CommonListAction" init-method="init" scope="prototype">
+		<property name="listcount">
+			<value>20000</value>
+		</property>
+		<property name="dataSource" ref="dataSource" />
+		<property name="listManager" ref="commonlistManager" />
+		<property name="listConfigList">
+			<list>
+				 
+				 <value>/listConfig-app.xml</value>
+				 <value>/listConfig-xtgl.xml</value>
+				
+			</list>
+		</property>
+	</bean>
+	
+	<!--  -->
+	<bean id="sqlMapUtils" class="com.jadlsoft.dbutils.SqlMapUtils"
+		init-method="init">
+		<property name="sqlmapList">
+			 <list>
+				<value>/sqlmapconfig-app.xml</value> 
+				<value>/sqlmapconfig-xtgl.xml</value> 
+				<value>/sqlmapconfig-dmgl.xml</value> 
+				<value>/sqlmapconfig-scjbak.xml</value> 
+			</list>
+		</property>
+	</bean>
+ 
+</beans>

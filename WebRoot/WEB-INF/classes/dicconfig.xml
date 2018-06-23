@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<columns>
+ 	<!-- <column name="xzqh" table="t_dm_xzqh" key="xzqh" text="mc" desc="行政区划"/> -->
+ 	
+    <!-- 所属项目字典表 -->
+    <column name="ssxm" table="t_dm_ssxm" key="dm" text="mc" desc="所属项目"/>
+    <!-- 目标类型字典表 -->
+    <column name="targetlx" table="t_dm_targetlx" key="dm" text="mc" desc="目标类型"/>
+    <!-- 执行状态字典表 -->
+    <column name="todozt" table="t_dm_todozt" key="dm" text="mc" desc="执行状态"/>
+    <!-- 行政区划字典表 -->
+    <column name="xzqh" table="t_dm_xzqh" key="dm" text="mc" desc="行政区划"/>
+
+</columns>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd   
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd   
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd   
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd"
+	default-autowire="byName">
+
+
+	<!-- **************************************** 系统管理   **************************************** -->
+		
+	<bean id="systemAction" class="com.jadlsoft.struts.action.xtgl.SystemAction"/>
+	
+	<!-- 用户管理 -->
+	<bean id="userAction" class="com.jadlsoft.struts.action.xtgl.UserAction" scope="prototype">
+		<property name="userManager" ref="userManager" />
+		<property name="roleManager" ref="roleManager" />
+	</bean>
+	
+	<!-- 角色管理 -->
+	<bean id="roleAction" class="com.jadlsoft.struts.action.xtgl.RoleAction" scope="prototype">
+		<property name="roleManager" ref="roleManager" />
+		<property name="permissManager" ref="permissManager" />
+	</bean>
+	
+	<!-- 权限管理 -->
+	<bean id="permissAction" class="com.jadlsoft.struts.action.xtgl.PermissAction" scope="prototype">
+		<property name="permissManager" ref="permissManager" />
+		<property name="gnlbManager" ref="gnlbManager" />
+	</bean>
+	
+	<!-- 功能菜单管理 -->
+	<bean id="gnlbAction" class="com.jadlsoft.struts.action.xtgl.GnlbAction" scope="prototype">
+		<property name="gnlbManager" ref="gnlbManager" />
+	</bean>
+	
+	<!-- 登录管理 -->
+	<bean name="loginAction" class="com.jadlsoft.struts.action.xtgl.LoginAction" scope="prototype">
+		<property name="userManager" ref="userManager" />
+		<property name="roleManager" ref="roleManager" />
+		<property name="gnlbManager" ref="gnlbManager" />
+	</bean>
+	
+	<bean id="loginManager" class="com.jadlsoft.business.xtgl.LoginManager" parent="baseManager" scope="prototype" />
+	<bean id="userManager" class="com.jadlsoft.business.xtgl.impl.UserManager" parent="baseManager" scope="prototype" />
+	<bean id="roleManager" class="com.jadlsoft.business.xtgl.impl.RoleManager" parent="baseManager" scope="prototype" />
+	<bean id="permissManager" class="com.jadlsoft.business.xtgl.impl.PermissManager" parent="baseManager" scope="prototype" />
+	<bean id="gnlbManager" class="com.jadlsoft.business.xtgl.impl.GnlbManager" parent="baseManager" scope="prototype" />
+
+	
+	<!-- **************************************** APP管理   **************************************** -->
+	
+	
+	<!-- APP应用 -->
+	<bean id="appAction" class="com.jadlwork.struts.action.app.AppAction" scope="prototype">
+		<property name="appManager" ref="appManager" />
+	</bean>
+	
+	<!-- APP版本 -->
+	<bean id="appversionAction" class="com.jadlwork.struts.action.app.AppVersionAction" scope="prototype">
+		<property name="appManager" ref="appManager" />
+	</bean>
+	
+	<!-- 定时升级任务 -->
+	<bean id="autotaskAction" class="com.jadlwork.struts.action.app.AutoTaskAction" scope="prototype">
+		<property name="appManager" ref="appManager" />
+	</bean>
+	
+	<!-- 用户更新规则 -->
+	<bean id="appupdateruleAction" class="com.jadlwork.struts.action.app.AppUpdateRuleAction" scope="prototype">
+		<property name="appManager" ref="appManager" />
+	</bean>
+	
+	<bean id="appManager" class="com.jadlwork.business.app.impl.AppManager" parent="baseManager" scope="prototype" />
+	
+	<!-- **************************************** 二维码管理   **************************************** -->
+	<bean id="qrCodeManager" class="com.jadlwork.business.qrgl.impl.QRCodeManager" parent="baseManager" scope="prototype" ></bean>
+	<bean id="qrCodeAction" class="com.jadlwork.struts.action.qrgl.QRCodeAction" scope="prototype">
+		<property name="qrCodeManager" ref="qrCodeManager" />
+	</bean>
+	
+	<!-- 项目管理 -->
+	<bean id="dmglAction" class="com.jadlwork.struts.action.qrgl.DmglAction" scope="prototype">
+		<property name="dmglManager" ref="dmglManager" />
+	</bean>
+	
+	<bean id="dmglManager" class="com.jadlwork.business.qrgl.impl.DmglManager" parent="baseManager" scope="prototype" />
+	
+	<!-- **************************************** 手持机云备份   **************************************** -->
+	<bean id="scjBakManager" class="com.jadlwork.business.scjbak.impl.ScjBakManager" parent="baseManager" scope="prototype"></bean>
+
+</beans>

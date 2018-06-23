@@ -1,0 +1,147 @@
+@CHARSET "UTF-8";
+/* reset STYLE */
+html,body,hr,ul,li,h4 {
+	margin: 0;
+	padding: 0;
+}
+
+ul,li {
+	list-style: none;
+}
+
+img {
+	border: 0 none;
+	outline: 0 none
+}
+
+a {
+	text-decoration: none;
+}
+
+a,img {
+	-webkit-tap-highlight-color: transparent;
+	/* 解决移动端特有的高亮效果 */
+}
+
+.container {
+	width: 100%;
+}
+
+/* title STYLE */
+.title {
+	padding-left: 15px;
+	color: #000;
+	font-size: 18px;
+	font-family: Microsoft Yahei;
+	line-height: 50px;
+	background: #F8F8F8;
+}
+
+/* cont STYLE */
+.cont-wrap {
+	padding: 0 15px;
+}
+
+.cont-wrap .cont-item {
+	width: 100%;
+	margin: 0 auto;
+	padding: 14px 0;
+	border-bottom: .5px solid #f0f0f0;
+}
+
+.cont-item .item-box {
+	position: relative;
+	padding-left: 70px;
+	padding-right: 60px;
+}
+
+/* cont-left STYLE */
+.cont-item .item-left {
+	width: 70px;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+.item-left a {
+	display: inline-block;
+	width: 60px;
+	height: 60px;
+	border-radius: 12px;
+	overflow: hidden;
+	box-sizing: border-box;
+}
+
+.item-left a img {
+	width: 60px;
+	height: 60px;
+}
+
+/* cont-body STYLE */
+.cont-item .item-body {
+	width: 100%;
+	padding-top: 4px;
+	min-height: 56px;
+}
+
+/* 文字一行显示 */
+.item-body .app-name,.item-body .app-info,.item-body .app-remark {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	word-break: keep-all;
+}
+
+.app-name {
+	color: #000;
+	font-size: 15px;
+	width: 100%;
+	display: block;
+	line-height: 15px;
+}
+
+.item-body .app-info {
+	color: #bcbcbc;
+	font-size: 13px;
+	margin-top: 3px;
+	line-height: 20px;
+	margin: 0;
+}
+
+.item-body .app-info .line {
+	height: 11px;
+	width: 0;
+	margin: 0 7px;
+	display: inline-block;
+	border: 1px solid #ddd;
+}
+
+.item-body .app-remark {
+	color: #9c9c9c;
+	font-size: 13px;
+	line-height: 20px;
+	margin: 0;
+}
+
+/* cont-right STYLE */
+.cont-item .item-right {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 60px;
+	height: 60px;
+	padding-top: 7px;
+}
+
+.item-right .app-down {
+	width: 60px;
+	margin: 0 auto;
+	height: 30px;
+	line-height: 30px;
+	font-size: 13px;
+	color: #fff;
+	background: rgba(0, 122, 255, 1);
+	border-radius: 3px;
+	text-align: center;
+	display: block;
+}

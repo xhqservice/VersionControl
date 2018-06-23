@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configs>
+
+	<!-- app列表 -->
+	<forward request="/app/applist.action" 
+		requirecondition="1~=~1"
+		defaultcondition="1~=~1"
+		datasource="(select a.id, a.appid, a.appname, a.ssxm, a.cjsj, a.zhxgsj,b.version from t_app_jbxx a left join t_app_version b on a.appid = b.appid and b.zt = '0' and b.type = '0' and b.isdefault = '0' where  a.zt = '0'  order by cjsj) t"
+		success="/app/applist.jsp" 
+		title="" 
+		field="" 
+	/>
+
+	<!-- 版本列表 -->
+	<forward request="/app/appversionlist.action" 
+		requirecondition="1~=~1"
+		defaultcondition="1~=~1"
+		class=""
+		datasource="(select id, appid, apk,apksrc,version, type, isdefault, to_char(cjsj,'yyyy-mm-dd hh24:mi:ss') cjsj,to_char(zhxgsj,'yyyy-mm-dd hh24:mi:ss') zhxgsj,zt from t_app_version where zt = '0' and type = '0' order by cjsj desc) t"
+		success="/app/appversionlist.jsp" 
+		title="" 
+		field="" 
+	/>
+	
+	<!-- 更新规则列表 -->
+	<forward request="/app/appupdaterulelist.action" 
+		requirecondition="1~=~1"
+		defaultcondition="1~=~1"
+		class=""
+		datasource="(select id, appid, version, target, targetlx,to_char(kssj,'yyyy-mm-dd hh24:mi:ss') kssj,to_char(jssj,'yyyy-mm-dd hh24:mi:ss') jssj,to_char(cjsj,'yyyy-mm-dd hh24:mi:ss') cjsj,to_char(zhxgsj,'yyyy-mm-dd hh24:mi:ss') zhxgsj, zt from t_app_updaterule where zt = '0' order by cjsj desc) t"
+		success="/app/appupdaterulelist.jsp" 
+		title="" 
+		field="" 
+	/>
+	
+	<!-- 定时任务列表 -->
+	<forward request="/app/autotasklist.action" 
+		requirecondition="1~=~1"
+		defaultcondition="1~=~1"
+		class=""
+		datasource="(select id, appid,appname, version,todozt,to_char(todotime,'yyyy-mm-dd hh24:mi:ss')  todotime,to_char(cjsj,'yyyy-mm-dd hh24:mi:ss') cjsj,to_char(zhxgsj,'yyyy-mm-dd hh24:mi:ss') zhxgsj,  zt from t_app_autotask  where zt = '0' order by cjsj) t"
+		success="/app/autotasklist.jsp" 
+		title="" 
+		field="" 
+	/>
+	
+	
+	<!-- 用户更新日志列表 -->
+	<forward request="/app/updateloglist.action" 
+		requirecondition="1~=~1"
+		defaultcondition="1~=~1"
+		class=""
+		datasource="(select id, appid, appname, version, ssxm, sbid, userid, dwdm, xzqh,to_char(xzsj,'yyyy-mm-dd hh24:mi:ss')  xzsj from t_app_updatelog order by xzsj ) t"
+		success="/app/updateloglist.jsp" 
+		title="" 
+		field="" 
+	/>
+	
+</configs>
+

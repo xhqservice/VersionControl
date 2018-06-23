@@ -1,0 +1,605 @@
+.clear, .clearfix {
+    zoom: 1
+}
+
+.clear:after, .clearfix:after {
+    content: '';
+    display: block;
+    clear: both
+}
+
+.width100 {
+    width: 100%;
+    min-width: 1200px
+}
+
+.width1200 {
+    width: 1200px;
+    margin: 0 auto;
+    position: relative
+}
+
+@font-face {
+    font-family: "juhefont";
+    src: url('../../font/iconfont.eot?t=14709706981');
+    src: url('../../font/iconfont.eot?t=14709706981#iefix') format('embedded-opentype'), url('../../font/iconfont.woff?t=14709706981') format('woff'), url('../../font/iconfont.ttf?t=14709706981') format('truetype'), url('../../font/iconfont.svg?t=14709706981#iconfont') format('svg')
+}
+
+.iconfont {
+    font-family: "juhefont" !important;
+    font-size: 12px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale
+}
+
+header, footer {
+    font-size: 12px
+}
+
+.top-tips {
+    border-bottom: 1px solid #f2f2f2;
+    background: #f8f8f8
+}
+
+.top-tips .top-tip-content {
+    height: 34px;
+    line-height: 34px
+}
+
+.top-tips .top-tip-content ul {
+    float: right
+}
+
+.top-tips .top-tip-content li {
+    float: left;
+    margin: 0 3px;
+    position: relative;
+}
+
+.top-tips .top-tip-content li a {
+    color: #999;
+    display: block;
+    padding: 0 8px;
+    cursor: pointer
+}
+
+.top-tips .top-tip-content .top-li1 a {
+    color: #00aeff
+}
+
+.top-tips .top-tip-content .top-li1 a i {
+    padding-left: 4px;
+    font-weight: normal;
+    display: inline-block;
+    width: 12px;
+    font-size: 12px;
+}
+
+.top-tips .top-tip-content .top-li1 .logout {
+    display: none;
+    position: absolute;
+    z-index: 8;
+    top: 35px;
+    left: -1px;
+    width: 250px;
+    height: auto;
+    background: #fff;
+    border: 1px solid #e7e7e7;
+    border-top: 0 none;
+}
+.top-tips .top-tip-content .top-li1 .logout{
+    *width: 0;
+    *height: 0;
+    *overflow: hidden;
+}
+
+.top-tips .top-tip-content .top-li1 .user-div {
+    border-left: 1px solid #f8f8f8;
+    border-right: 1px solid #f8f8f8;
+    position: relative;
+    z-index: 9;
+}
+
+.top-tips .top-tip-content .top-li1 .active {
+    background: #fff;
+    border: 1px solid #e7e7e7;
+    border-top: 0 none
+}
+.top-tips .top-tip-content .top-li1 .active {
+    background: #fff;
+    border: 1px solid #e7e7e7;
+    border-top: 0 none
+}
+
+.top-tips .top-tip-content .top-li1 .active .logout {
+    display: block;
+    font-weight: 400;
+    line-height: 32px;
+    color: #999;
+    text-align: center;
+}
+
+.top-li1 .logout .huiyuan1,.top-li1 .logout .huiyuan2{
+    padding: 0 28px;
+    position: relative;
+}
+.huiyuan-div{
+    height: 78px;
+    text-align: left;
+    line-height: 24px;
+}
+.huiyuan1 .huiyuan-div{
+    border-bottom: 1px solid #e7e7e7;
+}
+.huiyuan-div em{
+    font-size: 40px;
+    position: absolute;
+    left: 28px;
+    top: 18px;
+    width: 40px;
+    line-height: 40px;
+    height: 40px;
+    color: #00aeff;
+}
+.huiyuan-div dl{
+    padding-left: 52px;
+    padding-top: 12px;
+}
+.huiyuan-div dt{
+    font-weight: bold;
+    font-size: 16px;
+    color: #00aeff;
+}
+.huiyuan-div dd{
+    font-size: 12px;
+    color: #bbb;
+}
+.huiyuan-div dd b{
+    font-size: 16px;
+    padding-right: 3px;
+}
+.huiyuan2 dl{
+    padding-left: 4px;
+}
+.user-div-user em{
+    font-size: 18px;
+    font-weight: normal;
+    vertical-align: middle;
+}
+#new-header .huiyuan-div a{
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    color: #00aeff;
+    text-decoration: underline;;
+}
+#new-header .huiyuan-div a:hover{
+    text-decoration: underline;
+}
+.top-li1 .logout .tuichu a{
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    background: #f4f4f4;
+    color: #999;
+}
+.top-li1 .logout .tuichu a:hover{
+    color: #00aeff;
+}
+
+.top-tips .top-tip-content .top-li2 a {
+    color: #ff7a32
+}
+
+.top-tips .top-tip-content .top-li3 a {
+    color: #e5e5e5
+}
+
+.top-tips .top-tip-content .top-li1, .top-tips .top-tip-content .top-li2, .top-tips .top-tip-content .top-li3 {
+    font-weight: 700
+}
+
+.top-tips .top-tip-content .top-li4 {
+    position: relative
+}
+
+.top-tips .top-tip-content .top-li4 a {
+    border-left: 1px solid #f8f8f8;
+    border-right: 1px solid #f8f8f8
+}
+
+.top-tips .top-tip-content .top-li4 .logoCo {
+    display: none
+}
+
+.top-tips .top-tip-content .code-active {
+    background: #fff
+}
+
+.top-tips .top-tip-content .code-active a {
+    border-left: 1px solid #e7e7e7;
+    border-right: 1px solid #e7e7e7;
+    border-bottom: 1px solid #fff
+}
+
+.top-tips .top-tip-content .code-active .logoCo {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 34px;
+    z-index: 1;
+    height: 90px;
+    width: 90px;
+    padding: 5px;
+    border: 1px solid #e7e7e7;
+    border-top: 0 none;
+    background: #fff
+}
+
+.top-tips .top-tip-content .code-active .logoCo span {
+    display: block;
+    width: 90px;
+    height: 90px;
+    background: url("../../images/centerIcon.png?v=1.1") -111px -0px no-repeat #fff
+}
+
+.section-top {
+    background: #fff;
+    padding: 48px 0 42px
+}
+
+.section-top .top-wrapper h1 {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 310px;
+    height: 48px
+}
+
+.section-top .juhe-logo {
+    display: block;
+    width: 310px;
+    height: 48px;
+    text-indent: -9999em;
+    background: url("../../images/imgnew/juhelogo.png?v=1.1") no-repeat
+}
+
+.section-top .top-wrapper {
+    position: relative;
+    height: 50px
+}
+
+.section-top nav {
+    position: absolute;
+    left: 414px;
+    top: 4px;
+    height: 46px;
+    line-height: 46px
+}
+
+.section-top nav li {
+    float: left;
+    padding: 0 14px
+}
+
+.section-top nav li a {
+    color: #00aeff;
+    font-size: 18px;
+    display: block;
+    height: 100%;
+    padding: 0 3px;
+    vertical-align: middle;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    overflow: hidden
+}
+
+.section-top nav li a:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 50%;
+    right: 50%;
+    bottom: 0;
+    background: #00aeff;
+    height: 3px;
+    -webkit-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out
+}
+
+.section-top nav li a:hover:before, .section-top nav li a:active:before {
+    left: 0;
+    right: 0
+}
+
+.section-top nav li a:hover {
+    left: 0;
+    right: 0
+}
+
+.section-top nav li.active a {
+    border-radius: 2px
+}
+
+.section-top nav li.active a:before {
+    left: 0;
+    right: 0
+}
+
+.section-top .top-search {
+    position: absolute;
+    right: 0;
+    top: 10px;
+    padding: 10px 0 10px 16px;
+    height: 18px;
+    line-height: 18px;
+    width: 240px;
+    border: 1px solid #e7e7e7;
+    border-radius: 19px;
+    background: #f8f8f8
+}
+
+.section-top .top-search input {
+    height: 18px;
+    line-height: 18px;
+    color: #666;
+    width: 200px;
+    border: 0 none;
+    outline: 0;
+    background: none
+}
+
+.section-top .top-search input::-webkit-input-placeholder {
+    color: #aaa
+}
+
+.section-top .top-search input::-moz-placeholder {
+    color: #aaa
+}
+
+.section-top .top-search button {
+    position: absolute;
+    right: 10px;
+    top: 6px;
+    width: 30px;
+    border: 0 none;
+    vertical-align: middle;
+    height: 22px;
+    font-size: 18px;
+    font-weight: 400;
+    background: none;
+    color: #999
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) {
+    .section-top .juhe-logo {
+        display: block;
+        width: 310px;
+        height: 48px;
+        background: url("../../images/imgnew/juhelogo2x.png?v=1.1") no-repeat;
+        -webkit-background-size: 310px 48px;
+        background-size: 310px 48px
+    }
+}
+#vip-juhe{
+    position: relative;
+    padding-bottom: 6px;
+}
+.vip-juhe{
+    display: none;
+    position: absolute;
+    left: -1px;
+    top: 43px;
+    width: 80px;
+    background: #fff;
+    z-index: 1;
+    text-align: center;
+    padding: 0 14px;
+    border: 1px solid #ececec;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.1);
+    border-radius:3px;
+    *display: none;
+    *width: 0;
+    *height: 0;
+    *overflow: hidden;
+    *padding: 0;
+}
+.vip-juhe:after, .vip-juhe:before{
+    bottom:100%;
+    border:10px solid transparent;
+    content:" ";
+    width:0; height:0;
+    position: absolute;
+    pointer-events: none;
+    *border: 0;
+}
+.vip-juhe:after{
+    border-bottom-color:#fff;
+    border-width:8px;
+    left:50%;
+    margin-left:-8px;
+}
+.vip-juhe:before {
+    border-bottom-color:#e1e1e1;
+    border-width: 9px;
+    left: 50%;
+    margin-left: -9px;
+}
+
+#vip-juhe .vip-juhe a{
+    font-size: 14px;
+    color: #666;
+    line-height: 42px;
+    height: 42px;
+    display: block;
+    *display: none;
+}
+#vip-juhe .vip-juhe a:hover{
+    color: #00aeff;
+}
+.vip-juhe .vip-dj{
+    border-bottom: 1px solid #f4f4f4;
+}
+#vip-juhe .vip-juhe a:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 50%;
+    right: 50%;
+    bottom: 0;
+    background: #00aeff;
+    height: 3px;
+    -webkit-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+footer {
+    padding-top: 60px;
+    background: url("../../images/front/footerbg.png") center 60px no-repeat #fff;
+    height: 278px
+}
+
+footer .width1200 {
+    width: 850px;
+    padding-top: 64px
+}
+
+footer dl {
+    float: left;
+    width: 170px;
+    height: 150px;
+    text-align: center
+}
+
+footer dl dt {
+    font-size: 16px;
+    color: #666;
+    height: 20px;
+    line-height: 20px;
+    padding-bottom: 12px
+}
+
+footer dl dd {
+    color: #999;
+    line-height: 26px
+}
+
+footer dl dd a {
+    line-height: 26px;
+    color: #999;
+    font-size: 12px
+}
+
+footer dl dd a:hover {
+    text-decoration: underline
+}
+
+footer dl .focusus {
+    display: inline-block;
+    width: 90px;
+    height: 90px;
+    background: url("../../images/centerIcon.png?v=1.1") -111px -0px no-repeat #fff
+}
+
+footer p {
+    text-align: center;
+    color: #c9c9c9;
+    padding-top: 20px;
+    line-height: 30px
+}
+
+#juhegoTop {
+    height: 230px;
+    width: 50px;
+    position: fixed;
+    _position: absolute;
+    bottom: 100px;
+    right: 20px;
+    text-align: center;
+    z-index: 9
+}
+
+#juhegoTop a {
+    display: block;
+    height: 50px;
+    width: 50px;
+    background: url("../../images/front/goTop.png") no-repeat
+}
+
+#juhegoTop li {
+    position: relative;
+    list-style: none;
+    width: 50px;
+    height: 50px
+}
+
+#tools_qq a {
+    background-position: center -5px
+}
+
+#tools_contact {
+    margin: 6px 0
+}
+
+#tools_contact a {
+    background-position: center -65px
+}
+
+#tools_feedback a {
+    background-position: center -125px
+}
+
+#tools_goTop a {
+    background-position: center -185px
+}
+
+#tools_qq a:hover {
+    background-position: center -245px
+}
+
+#tools_contact a:hover {
+    background-position: center -305px
+}
+
+#tools_feedback a:hover {
+    background-position: center -365px
+}
+
+#tools_goTop a:hover {
+    background-position: center -425px
+}
+
+#juhegoTop span {
+    display: none;
+    width: 82px;
+    height: 27px;
+    padding-right: 6px;
+    line-height: 27px;
+    background: url("../../images/front/topTipsBg.png") no-repeat;
+    font-size: 12px;
+    color: #fff;
+    font-family: "microsoft yahei";
+    text-align: center;
+    position: absolute;
+    top: 12px;
+    right: 55px
+}
+
+#tools_goTop {
+    display: none;
+    margin-top: 6px
+}
+
+#new-header a {
+    text-decoration: none;
+}
+
+#new-header a:hover {
+    text-decoration: none;
+}
