@@ -357,15 +357,15 @@ public class AppManager extends BaseManager implements IAppManager {
 		int xzhqhLevel = XzhqhUtils.getXZHQHLevel(xzqh);
 
 
-		if ("000000".equals(xzqh)) {
-			return IConstants.MINISTRY; // 公安部级
-		} else if (xzqh.substring(2, 6).equals("0000")) {
-			return IConstants.PROVINCE; // 省级
-		} else if (xzqh.substring(4, 6).equals("00")) {
-			return IConstants.CITY; // 地市级
-		} else {
-			return IConstants.COUNTRY; // 县级
-		}
+//		if ("000000".equals(xzqh)) {
+//			return IConstants.MINISTRY; // 公安部级
+//		} else if (xzqh.substring(2, 6).equals("0000")) {
+//			return IConstants.PROVINCE; // 省级
+//		} else if (xzqh.substring(4, 6).equals("00")) {
+//			return IConstants.CITY; // 地市级
+//		} else {
+//			return IConstants.COUNTRY; // 县级
+//		}
 
 		String sql = "";
 		switch (xzhqhLevel) {

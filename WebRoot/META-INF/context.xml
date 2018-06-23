@@ -14,9 +14,15 @@
 	  
    <Resource name="jdbc_mb" auth="Container" type="javax.sql.DataSource" 
 	  driverClassName="oracle.jdbc.driver.OracleDriver" 
-	  url="jdbc:oracle:thin:@192.168.20.102:1521:orcl102" 
+	  url="jdbc:oracle:thin:@192.168.10.246:1521:ORCL"
 	  username="US_SERVICES_VERSIONCONTROL" password="gaxt2008" maxActive="20" maxIdle="10" maxWait="-1"/>
-  
+<!--
+   <Resource name="jdbc_mb" auth="Container" type="javax.sql.DataSource"
+	  driverClassName="oracle.jdbc.driver.OracleDriver"
+	  url="jdbc:oracle:thin:@192.168.20.102:1521:orcl102"
+	  username="US_SERVICES_VERSIONCONTROL" password="gaxt2008" maxActive="20" maxIdle="10" maxWait="-1"/>
+-->
+
   </Context>
 
 <!-- 测试环境
