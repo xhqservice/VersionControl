@@ -336,7 +336,8 @@ public class AppManager extends BaseManager implements IAppManager {
 		} 
 		
 		if(xzqh != null && !"".equals(xzqh)){
-			whereCond.append(" or (target = :target_xzqh and targetlx = '"+SystemConstants.TARGETLX_DQ+"')");
+			whereCond.append(getXzqhSql(xzqh));
+//			whereCond.append(" or (target = :target_xzqh and targetlx = '"+SystemConstants.TARGETLX_DQ+"')");
 			condition.put("target_xzqh", xzqh);
 		}
 	
@@ -348,38 +349,34 @@ public class AppManager extends BaseManager implements IAppManager {
 		return null;
 	}
 
+
 	/**
 	 * 根据行政区划获取使用行政区划判断规则的SQL
+	 * 		需要注意or的顺序，涉及到优先级，规则如下：
+	 * 			设备 > 单位 > 行政区划等于 > 行政区划县级匹配 > 行政区划市级匹配 > 行政区划省级匹配 > 行政区划全国匹配
 	 * @param xzqh	传递的行政区划
 	 * @return
 	 */
 	private String getXzqhSql(String xzqh) {
 		int xzhqhLevel = XzhqhUtils.getXZHQHLevel(xzqh);
-
-
-//		if ("000000".equals(xzqh)) {
-//			return IConstants.MINISTRY; // 公安部级
-//		} else if (xzqh.substring(2, 6).equals("0000")) {
-//			return IConstants.PROVINCE; // 省级
-//		} else if (xzqh.substring(4, 6).equals("00")) {
-//			return IConstants.CITY; // 地市级
-//		} else {
-//			return IConstants.COUNTRY; // 县级
-//		}
-
 		String sql = "";
 		switch (xzhqhLevel) {
 			case IConstants.MINISTRY:	//公安部000000  必须一致
-				sql = "";
+				sql = " or (target = :target_xzqh and targetlx = '" + SystemConstants.TARGETLX_DQ + "')";
 				break;
-			case IConstants.PROVINCE:	//省级，必须一致
-				sql = "";
+			case IConstants.PROVINCE:	//省级，一致或者库中为000000
+				sql = " or ( (target = :target_xzqh or target = '000000') and targetlx = '" + SystemConstants.TARGETLX_DQ + "')";
 				break;
-			case IConstants.CITY:	//地市级，前两位必须相同
-				sql = "";
+			case IConstants.CITY:	//地市级，一致，或者库中为000000，或者库中为前两位后面跟0000
+				sql = " or ( ( (target = :target_xzqh) " +
+								"or (target = concat(substr(:target_xzqh,0,2),'0000')) " +
+								"or （target = '000000'） ) and targetlx = '" + SystemConstants.TARGETLX_DQ + "')";
 				break;
-			case IConstants.COUNTRY:
-				sql = "";
+			case IConstants.COUNTRY:	//县级，一致，或者库中为000000，或者库中为前两位+0000，或者库中为前四位+00
+				sql = " or ( ( (target = :target_xzqh) " +
+								"or (target = concat(substr(:target_xzqh,0,4),'00')) " +
+								"or (target = concat(substr(:target_xzqh,0,2),'0000')) " +
+								"or （target = '000000') ) and targetlx = '" + SystemConstants.TARGETLX_DQ + "')";
 				break;
 		}
 
